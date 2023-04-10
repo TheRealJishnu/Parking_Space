@@ -11,7 +11,7 @@ import random
 
 def ConnectServer():
     mycon=sqltor.connect(host="localhost",user="root",passwd="changeme",database="sample")
-    if mycon.is_connected()==False:
+    if not mycon.is_connected():
         print('Error connecting to MySQL database')
     # else:
     #     print("Connected to MySQL server successfully, You can begin operation now ")
@@ -29,7 +29,6 @@ def AddCustomer():
     
     print("Customer ID = ", custID)
     mycon.commit()
-    print(cursor)
     mycon.close()
 
 def DeleteCustomer():
@@ -38,9 +37,7 @@ def DeleteCustomer():
     cid = input("Enter Customer ID of the Customer that will be Deleted : ")
     comm = "DELETE FROM customer WHERE Customer_ID = '{}';".format(cid)
     cursor.execute(comm)
-    # print(cursor)
     mycon.commit()
-    print(cursor)
     mycon.close()
 def ViewAllCustomer():
     mycon = ConnectServer()
@@ -48,21 +45,21 @@ def ViewAllCustomer():
     # cid = input("Enter Customer ID")
     comm = "SELECT * FROM  customer;"
     cursor.execute(comm)
-    # print(cursor)
     mycon.commit()
     for row in cursor:
         print(row)
     mycon.close()
-AddCustomer()
-ViewAllCustomer()
-DeleteCustomer()
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+def ViewACustomer():
+    mycon = ConnectServer()
+    cursor = mycon.cursor(buffered=True)
+    cid = input("Enter Customer ID : ")
+    comm = "SELECT * FROM  customer WHERE Customer_ID = '{}';".format(cid)
+    cursor.execute(comm)
+    mycon.commit()
+    for row in cursor:
+        print(row)
+    mycon.close()
+
+def UpdateCustomer():
+    print("Confusion About This")
