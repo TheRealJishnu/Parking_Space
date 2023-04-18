@@ -21,7 +21,7 @@ def AddCustomer():
     mycon = ConnectServer()
     cursor=mycon.cursor(buffered=True)
     print("----------Enter New Member Details----------")
-    name = input("Enterr Name: ")
+    name = input("Enter Name: ")
     phNum = input("Enter Phone Number: ")
     custID = random.randint(100, 100000)
     comm = "INSERT INTO customer VALUES('{}','{}','{}');".format(name, phNum, custID)
@@ -62,4 +62,22 @@ def ViewACustomer():
     mycon.close()
 
 def UpdateCustomer():
-    print("Confusion About This")
+    mycon = ConnectServer()
+    cursor = mycon.cursor(buffered=True)
+    cid = input("Enter Customer ID : ")
+    c1 = input("Do You want to change Name? (y/n) ")
+    
+    if(c1 == 'y' or c1 == 'Y'):
+        name = input("Enter New Name: ")
+        comm = "UPDATE customer SET Name = '{}' WHERE Customer_ID = '{}';".format(name, cid)
+        cursor.execute(comm)
+        mycon.commit()
+    c1 = input("Do You want to change Phone Number? (y/n) ")
+    
+    if(c1 == 'y' or c1 == 'Y'):
+        num = input("Enter New Phone No: ")
+        comm = "UPDATE customer SET Phone_No = '{}' WHERE Customer_ID = '{}';".format(num, cid)
+        cursor.execute(comm)
+        mycon.commit()
+    mycon.close()
+    
