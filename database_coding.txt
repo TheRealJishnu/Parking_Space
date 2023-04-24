@@ -1,0 +1,9 @@
+* 
+* This is database coding part
+* In your MySQL server, use the following codes step by step to create appropriate database for your customer management code
+1)
+CREATE database sample;
+2)
+use sample;
+3)
+CREATE table customer(Name varchar(30), Phone_No varchar(30), Customer_ID varchar(30) PRIMARY KEY);
